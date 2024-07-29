@@ -43,7 +43,19 @@ public class MainObstaculos {
         
         int movimentosRobNormal = 0;
         int movimentosRobInteligente = 0;
+     
 
+
+
+
+
+
+        // o erro esta aqui 
+
+
+
+
+        
         while (!roboNormal.encontrouAlimento(alimentoX, alimentoY) &&
                !roboInteligente.encontrouAlimento(alimentoX, alimentoY) &&
                !roboNormalExplodiu && !roboInteligenteExplodiu) {
