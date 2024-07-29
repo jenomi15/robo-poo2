@@ -63,10 +63,10 @@ class Robo {
         this.x = this.prevX;
         this.y = this.prevY;
     }
-
+    // o erro pode estar aqui tambem
     public void removerDoPlanoCartesiano() {
-        this.x = Integer.MIN_VALUE;
-        this.y = Integer.MIN_VALUE;
+        this.x = -1;
+        this.y = -1;
     }
 
     public void mover(String direcao) throws MovimentoInvalidoException {
@@ -116,7 +116,7 @@ class Robo {
                 throw new MovimentoInvalidoException("Direção inválida: " + direcao);
         }
     }
-
+  // ou o erro pode estar na impressao
     public void mostrarPlanoCartesiano1(int alimentoX, int alimentoY, Robo outroRobo, List<Obstaculo> obstaculos) {
         int minX = Math.min(0, Math.min(x, Math.min(alimentoX, outroRobo.getX())));
         int minY = Math.min(0, Math.min(y, Math.min(alimentoY, outroRobo.getY())));
@@ -145,14 +145,25 @@ class Robo {
                     } else if (i == alimentoX && j == alimentoY) {
                         System.out.print("A   "); // Alimento
                     } else {
-                        System.out.print(".   "); // Espaço vazio
+                        boolean isEmptySpace = true;
+                        for (Obstaculo obstaculo : obstaculos) {
+                            if (i == obstaculo.getX() && j == obstaculo.getY()) {
+                                System.out.print("O   "); // Obstáculo
+                                isEmptySpace = false;
+                                break;
+                            }
+                        }
+                        if (isEmptySpace) {
+                            System.out.print(".   "); // Espaço vazio
+                        }
                     }
                 }
             }
-            System.out.println();
+            System.out.println();/// Quebra de linha após cada linha do tabuleiro
         }
-        System.out.println();
     }
+            
+            
 
     public boolean encontrouAlimento(int alimentoX, int alimentoY) {
         return this.x == alimentoX && this.y == alimentoY;
@@ -189,4 +200,3 @@ class Robo {
         this.numero = numero;
     }
 }
-    
