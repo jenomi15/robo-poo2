@@ -152,6 +152,28 @@ public class Robo {
             System.out.println(); // Quebra de linha após cada linha do tabuleiro
         }
     }
+    public void mostrarPlanoCartesiano(int alimentoX, int alimentoY, Robo outroRobo) {
+        int minX = Math.min(0, Math.min(x, Math.min(alimentoX, outroRobo.getX())));
+        int minY = Math.min(0, Math.min(y, Math.min(alimentoY, outroRobo.getY())));
+        int maxX = Math.max(x, Math.max(alimentoX, outroRobo.getX()));
+        int maxY = Math.max(y, Math.max(alimentoY, outroRobo.getY()));
+
+        for (int j = maxY; j >= minY; j--) {
+            for (int i = minX; i <= maxX; i++) {
+                if (i == x && j == y) {
+                    System.out.print("R1  "); // Robo 1
+                } else if (i == outroRobo.getX() && j == outroRobo.getY()) {
+                    System.out.print("R2  "); // Robo 2
+                } else if (i == alimentoX && j == alimentoY) {
+                    System.out.print("A   "); // Alimento
+                } else {
+                    System.out.print(".   "); // Espaço vazio
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
     public boolean encontrouAlimento(int alimentoX, int alimentoY) {
         return this.x == alimentoX && this.y == alimentoY;
